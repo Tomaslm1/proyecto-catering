@@ -7,6 +7,8 @@ import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 import Menu from "./pages/Menu.jsx";
 import Contacto from "./pages/Contacto.jsx";
+import Login from "./pages/Login.jsx";
+import Admin from "./pages/Admin.jsx";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -14,18 +16,11 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/menu",
-        element: <Menu />,
-      },
-      {
-        path: "/contacto",
-        element: <Contacto />,
-      },
+      { path: "/", element: <Home /> },
+      { path: "/menu", element: <Menu /> },
+      { path: "/contacto", element: <Contacto /> },
+      { path: "/login", element: <Login /> },
+      { path: "/admin", element: <Admin /> },
     ],
   },
 ]);

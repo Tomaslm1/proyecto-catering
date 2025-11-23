@@ -34,8 +34,24 @@ function Contacto() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const mensajesGuardados =
+      JSON.parse(localStorage.getItem("mensajesContacto")) || [];
+
+    const nuevoMensaje = { ...formData, id: Date.now() };
+    mensajesGuardados.push(nuevoMensaje);
+
+    localStorage.setItem("mensajesContacto", JSON.stringify(mensajesGuardados));
+
     alert(`${mensajes.contact.alert_success} (${formData.nombre})`);
-    console.log("Datos del formulario:", formData);
+
+    setFormData({
+      nombre: "",
+      email: "",
+      tipoServicio: "",
+      fecha: "",
+      invitados: "",
+      mensaje: "",
+    });
   };
 
   return (
@@ -91,7 +107,6 @@ function Contacto() {
               onChange={handleChange}
             />
           </div>
-
           <div className="form-group">
             <label>{mensajes.contact.label_guests}</label>
             <input

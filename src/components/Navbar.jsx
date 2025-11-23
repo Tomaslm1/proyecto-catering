@@ -43,6 +43,18 @@ function Navbar() {
               }}
             />
           </button>
+
+          <Link
+            to="/login"
+            style={{
+              marginLeft: "15px",
+              fontSize: "1.2rem",
+              textDecoration: "none",
+            }}
+            title="Admin Login"
+          >
+            🔒
+          </Link>
         </div>
       </div>
     </nav>
