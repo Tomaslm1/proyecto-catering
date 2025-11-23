@@ -21,6 +21,13 @@
   font-size: 1.5rem;
   font-weight: bold;
   color: #d35400;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-logo:hover {
+  color: #a04000;
 }
 
 .nav-links {

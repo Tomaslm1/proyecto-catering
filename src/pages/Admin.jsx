@@ -42,6 +42,23 @@ function Admin() {
     localStorage.setItem("mensajesContacto", JSON.stringify(nuevosMensajes));
   };
 
+  const editarInvitados = (id, invitadosActuales) => {
+    const nuevoNumero = prompt(
+      "Ingresa el nuevo número de invitados:",
+      invitadosActuales
+    );
+    if (nuevoNumero !== null && nuevoNumero !== "") {
+      const nuevosMensajes = mensajes.map((msg) => {
+        if (msg.id === id) {
+          return { ...msg, invitados: nuevoNumero };
+        }
+        return msg;
+      });
+      setMensajes(nuevosMensajes);
+      localStorage.setItem("mensajesContacto", JSON.stringify(nuevosMensajes));
+    }
+  };
+
   return (
     <div style={{ padding: "40px", maxWidth: "1000px", margin: "0 auto" }}>
       <div
@@ -83,7 +100,6 @@ function Admin() {
                 borderRadius: "8px",
                 background: "white",
                 boxShadow: "0 2px 5px rgba(0,0,0,0.05)",
-
                 borderLeft:
                   msg.estado === "Atendido"
                     ? "5px solid #27ae60"
@@ -100,6 +116,9 @@ function Admin() {
                 <div>
                   <h4 style={{ margin: "0 0 5px 0" }}>{msg.nombre}</h4>
                   <div style={{ color: "#555", fontSize: "0.9rem" }}>
+                    🏢{" "}
+                    <strong>{msg.empresa || "Empresa no especificada"}</strong>{" "}
+                    <br />
                     📧 {msg.email} <br />
                     📞 {msg.telefono || "Sin teléfono"}
                   </div>
@@ -122,7 +141,14 @@ function Admin() {
                     {msg.estado || "Pendiente"}
                   </span>
 
-                  <div style={{ display: "flex", gap: "10px" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "10px",
+                      flexWrap: "wrap",
+                      justifyContent: "flex-end",
+                    }}
+                  >
                     <button
                       onClick={() => toggleEstado(msg.id)}
                       style={{
@@ -138,6 +164,20 @@ function Admin() {
                       {msg.estado === "Atendido"
                         ? "Marcar Pendiente"
                         : "Marcar Atendido"}
+                    </button>
+
+                    <button
+                      onClick={() => editarInvitados(msg.id, msg.invitados)}
+                      style={{
+                        background: "#f39c12",
+                        color: "white",
+                        border: "none",
+                        padding: "5px 10px",
+                        borderRadius: "4px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      ✏️ Editar Invitados
                     </button>
 
                     <button
@@ -169,8 +209,10 @@ function Admin() {
                 <strong>Servicio:</strong> {msg.tipoServicio}
               </p>
               <p>
-                <strong>Fecha:</strong> {msg.fecha} |{" "}
-                <strong>Invitados:</strong> {msg.invitados}
+                <strong>Fecha:</strong> {msg.fecha} |
+                <strong style={{ color: "#d35400", marginLeft: "5px" }}>
+                  Invitados: {msg.invitados}
+                </strong>
               </p>
               <p
                 style={{

@@ -9,7 +9,9 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <div className="nav-logo">Catering Corporativo</div>
+        <Link to="/" className="nav-logo">
+          Catering Corporativo
+        </Link>
 
         <div className="nav-links">
           <Link to="/">{mensajes.navbar.home}</Link>

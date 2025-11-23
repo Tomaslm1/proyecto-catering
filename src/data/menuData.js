@@ -4,25 +4,37 @@ export const servicios = [
     nombre: "Coffee Break",
     descripcion:
       "Servicio completo de coffee break que incluye, cafe, te, jugo, variedad de dulces, tapaditos, frutas, entre otros.",
-    imagen: "/img/coffee1.jpg",
+    imagen: "/img/coffee2.jpg",
   },
   {
     id: 2,
-    nombre: "Almuerzos corporativos",
-    descripcion: "Servicio completo para el almuerzo de tu empresa",
-    imagen: "/img/almuerzo.jpeg",
+    nombre: "Catering para empresas",
+    descripcion: "Servicio de catering para tu reunión.",
+    imagen: "/img/coffee3.jpg",
   },
   {
     id: 3,
-    nombre: "Eventos personalizados",
+    nombre: "Producción de eventos",
     descripcion:
       "Servicio para tu compleaños, matrimonio, baby shower, entre otros. ",
     imagen: "/img/pizza.jpg",
   },
   {
     id: 4,
-    nombre: "Box Desayunos individuales",
-    descripcion: "Distintos estilos de desayunos para dias especiales",
+    nombre: "Regalos corporativos",
+    descripcion: "Regalos perfectos para tu empresa.",
+    imagen: "/img/regalos-corporativos.jpg",
+  },
+  {
+    id: 5,
+    nombre: "Desayunos y tablas a domicilio",
+    descripcion: "Desayunos y tablas a la puerta de tu casa.",
     imagen: "/img/desayuno.jpeg",
+  },
+  {
+    id: 4,
+    nombre: "Servicios de banqueteria",
+    descripcion: "Servicio completo con tablas de distintas comidas.",
+    imagen: "/img/banqueteria.jpg",
   },
 ];

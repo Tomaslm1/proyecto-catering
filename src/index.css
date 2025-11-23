@@ -2,7 +2,6 @@
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   --primary-color: #d35400;
   --bg-color: #f4f4f9;
   --card-bg: #ffffff;
@@ -19,4 +18,25 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+.floating-insta {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.floating-insta:hover {
+  transform: scale(1.1);
+}
+
+.floating-insta img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }

@@ -11,6 +11,7 @@ function Contacto() {
 
   const [formData, setFormData] = useState({
     nombre: "",
+    empresa: "",
     email: "",
     telefono: "",
     tipoServicio: "",
@@ -57,6 +58,7 @@ function Contacto() {
 
     setFormData({
       nombre: "",
+      empresa: "",
       email: "",
       telefono: "",
       tipoServicio: "",
@@ -95,6 +97,17 @@ function Contacto() {
             value={formData.nombre}
             onChange={handleChange}
             required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>{mensajes.contact.label_company}</label>
+          <input
+            type="text"
+            name="empresa"
+            value={formData.empresa}
+            onChange={handleChange}
+            placeholder="Ej: Tech Solutions SpA"
           />
         </div>
 

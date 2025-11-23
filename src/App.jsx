@@ -6,15 +6,31 @@ function App() {
     <div>
       <Navbar />
 
-      <main style={{ padding: "20px" }}>
+      <main style={{ padding: "20px", minHeight: "80vh" }}>
         <Outlet />
       </main>
 
-      <hr />
-
-      <footer style={{ textAlign: "center", padding: "20px" }}>
-        <p>&copy; 2025 Catering Services</p>
+      <footer
+        style={{
+          textAlign: "center",
+          padding: "20px",
+          borderTop: "1px solid #eee",
+          marginTop: "20px",
+          color: "#666",
+          backgroundColor: "#fff",
+        }}
+      >
+        <p>&copy; {new Date().getFullYear()} Catering corporativo</p>
       </footer>
+
+      <a
+        href="https://www.instagram.com/catering.corpo"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="floating-insta"
+      >
+        <img src="/img/instagram.png" alt="Instagram" />
+      </a>
     </div>
   );
 }
