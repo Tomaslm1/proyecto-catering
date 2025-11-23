@@ -7,9 +7,8 @@ function Admin() {
 
   useEffect(() => {
     const isLogueado = localStorage.getItem("estaLogueado");
-
     if (isLogueado !== "true") {
-      alert("Acceso denegado. Debes iniciar sesión.");
+      alert("Acceso denegado.");
       navigate("/login");
     } else {
       const datos = JSON.parse(localStorage.getItem("mensajesContacto")) || [];
@@ -23,11 +22,24 @@ function Admin() {
   };
 
   const borrarMensaje = (id) => {
-    if (window.confirm("¿Estás seguro de borrar este mensaje?")) {
+    if (window.confirm("¿Borrar mensaje?")) {
       const nuevosMensajes = mensajes.filter((msg) => msg.id !== id);
       setMensajes(nuevosMensajes);
       localStorage.setItem("mensajesContacto", JSON.stringify(nuevosMensajes));
     }
+  };
+
+  const toggleEstado = (id) => {
+    const nuevosMensajes = mensajes.map((msg) => {
+      if (msg.id === id) {
+        const nuevoEstado =
+          msg.estado === "Atendido" ? "Pendiente" : "Atendido";
+        return { ...msg, estado: nuevoEstado };
+      }
+      return msg;
+    });
+    setMensajes(nuevosMensajes);
+    localStorage.setItem("mensajesContacto", JSON.stringify(nuevosMensajes));
   };
 
   return (
@@ -56,7 +68,7 @@ function Admin() {
         </button>
       </div>
 
-      <h3>Mensajes Recibidos ({mensajes.length})</h3>
+      <h3>Bandeja de Entrada ({mensajes.length})</h3>
 
       {mensajes.length === 0 ? (
         <p>No hay mensajes nuevos.</p>
@@ -71,35 +83,88 @@ function Admin() {
                 borderRadius: "8px",
                 background: "white",
                 boxShadow: "0 2px 5px rgba(0,0,0,0.05)",
+
+                borderLeft:
+                  msg.estado === "Atendido"
+                    ? "5px solid #27ae60"
+                    : "5px solid #e74c3c",
               }}
             >
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <h4 style={{ margin: "0 0 10px 0" }}>
-                  {msg.nombre}{" "}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginBottom: "10px",
+                }}
+              >
+                <div>
+                  <h4 style={{ margin: "0 0 5px 0" }}>{msg.nombre}</h4>
+                  <div style={{ color: "#555", fontSize: "0.9rem" }}>
+                    📧 {msg.email} <br />
+                    📞 {msg.telefono || "Sin teléfono"}
+                  </div>
+                </div>
+
+                <div style={{ textAlign: "right" }}>
                   <span
                     style={{
-                      fontWeight: "normal",
-                      color: "#777",
-                      fontSize: "0.9rem",
+                      padding: "5px 12px",
+                      borderRadius: "20px",
+                      fontSize: "0.8rem",
+                      fontWeight: "bold",
+                      backgroundColor:
+                        msg.estado === "Atendido" ? "#d4efdf" : "#fadbd8",
+                      color: msg.estado === "Atendido" ? "#145a32" : "#943126",
+                      display: "inline-block",
+                      marginBottom: "10px",
                     }}
                   >
-                    ({msg.email})
+                    {msg.estado || "Pendiente"}
                   </span>
-                </h4>
-                <button
-                  onClick={() => borrarMensaje(msg.id)}
-                  style={{
-                    background: "#e74c3c",
-                    color: "white",
-                    border: "none",
-                    padding: "5px 10px",
-                    borderRadius: "4px",
-                    cursor: "pointer",
-                  }}
-                >
-                  Borrar
-                </button>
+
+                  <div style={{ display: "flex", gap: "10px" }}>
+                    <button
+                      onClick={() => toggleEstado(msg.id)}
+                      style={{
+                        background:
+                          msg.estado === "Atendido" ? "#95a5a6" : "#27ae60",
+                        color: "white",
+                        border: "none",
+                        padding: "5px 10px",
+                        borderRadius: "4px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      {msg.estado === "Atendido"
+                        ? "Marcar Pendiente"
+                        : "Marcar Atendido"}
+                    </button>
+
+                    <button
+                      onClick={() => borrarMensaje(msg.id)}
+                      style={{
+                        background: "#e74c3c",
+                        color: "white",
+                        border: "none",
+                        padding: "5px 10px",
+                        borderRadius: "4px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Borrar
+                    </button>
+                  </div>
+                </div>
               </div>
+
+              <hr
+                style={{
+                  border: "0",
+                  borderTop: "1px solid #eee",
+                  margin: "15px 0",
+                }}
+              />
+
               <p>
                 <strong>Servicio:</strong> {msg.tipoServicio}
               </p>

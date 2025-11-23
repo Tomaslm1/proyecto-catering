@@ -7,10 +7,12 @@ function Contacto() {
   const { mensajes } = useLang();
   const location = useLocation();
   const servicioInicial = location.state?.servicioInteres || "";
+  const hoy = new Date().toISOString().split("T")[0];
 
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
+    telefono: "",
     tipoServicio: "",
     fecha: "",
     invitados: "",
@@ -28,7 +30,12 @@ function Contacto() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    if (name === "telefono") {
+      const soloNumeros = value.replace(/[^0-9]/g, "");
+      setFormData({ ...formData, [name]: soloNumeros });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -37,9 +44,13 @@ function Contacto() {
     const mensajesGuardados =
       JSON.parse(localStorage.getItem("mensajesContacto")) || [];
 
-    const nuevoMensaje = { ...formData, id: Date.now() };
-    mensajesGuardados.push(nuevoMensaje);
+    const nuevoMensaje = {
+      ...formData,
+      id: Date.now(),
+      estado: "Pendiente",
+    };
 
+    mensajesGuardados.push(nuevoMensaje);
     localStorage.setItem("mensajesContacto", JSON.stringify(mensajesGuardados));
 
     alert(`${mensajes.contact.alert_success} (${formData.nombre})`);
@@ -47,6 +58,7 @@ function Contacto() {
     setFormData({
       nombre: "",
       email: "",
+      telefono: "",
       tipoServicio: "",
       fecha: "",
       invitados: "",
@@ -87,6 +99,19 @@ function Contacto() {
         </div>
 
         <div className="form-group">
+          <label>{mensajes.contact.label_phone}</label>
+          <input
+            type="tel"
+            name="telefono"
+            value={formData.telefono}
+            onChange={handleChange}
+            placeholder="912345678"
+            required
+            maxLength="15"
+          />
+        </div>
+
+        <div className="form-group">
           <label>{mensajes.contact.label_email}</label>
           <input
             type="email"
@@ -105,6 +130,7 @@ function Contacto() {
               name="fecha"
               value={formData.fecha}
               onChange={handleChange}
+              min={hoy}
             />
           </div>
           <div className="form-group">

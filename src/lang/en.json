@@ -27,6 +27,7 @@
     "label_service": "Service of Interest:",
     "label_name": "Full Name:",
     "label_email": "Email:",
+    "label_phone": "Phone Number:",
     "label_date": "Event Date:",
     "label_guests": "No. of Guests (Approx):",
     "label_message": "Message or Details:",

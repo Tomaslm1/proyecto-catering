@@ -27,6 +27,7 @@
     "label_service": "Servicio a Cotizar:",
     "label_name": "Nombre Completo:",
     "label_email": "Email:",
+    "label_phone": "Teléfono / Celular:",
     "label_date": "Fecha del Evento:",
     "label_guests": "N° Invitados (Aprox):",
     "label_message": "Mensaje o Detalles:",
