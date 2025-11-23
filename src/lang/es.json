@@ -1,0 +1,37 @@
+{
+  "navbar": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "contact": "Contacto"
+  },
+  "home": {
+    "title": "Catering Corporativo de Excelencia",
+    "subtitle": "Transformamos tus reuniones y eventos en experiencias gastronómicas inolvidables.",
+    "cta": "Ver Nuestros Servicios",
+    "weather_title": "Planifica tu evento",
+    "weather_sub": "Clima actual en Santiago",
+    "feature1_title": "Productos Frescos",
+    "feature1_desc": "Utilizamos ingredientes seleccionados del día.",
+    "feature2_title": "Puntualidad",
+    "feature2_desc": "Tu evento comenzará exactamente a la hora acordada.",
+    "feature3_title": "Atención Personalizada",
+    "feature3_desc": "Nos adaptamos a las necesidades de tu empresa."
+  },
+  "menu": {
+    "title": "Nuestros Servicios de Catering",
+    "btn_quote": "Cotizar Servicio"
+  },
+  "contact": {
+    "title": "Solicita tu Cotización",
+    "subtitle": "Cuéntanos sobre tu evento y te contactaremos a la brevedad.",
+    "label_service": "Servicio a Cotizar:",
+    "label_name": "Nombre Completo:",
+    "label_email": "Email:",
+    "label_date": "Fecha del Evento:",
+    "label_guests": "N° Invitados (Aprox):",
+    "label_message": "Mensaje o Detalles:",
+    "placeholder_message": "¿Qué tipo de servicio buscas? (Coffee break, Almuerzo...)",
+    "btn_send": "Enviar Solicitud",
+    "alert_success": "¡Gracias! Hemos recibido tu solicitud."
+  }
+}

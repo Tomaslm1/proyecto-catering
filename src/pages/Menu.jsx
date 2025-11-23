@@ -2,9 +2,11 @@ import React from "react";
 import { servicios } from "../data/menuData";
 import "./Menu.css";
 import { useNavigate } from "react-router-dom";
+import { useLang } from "../context/LangContext";
 
 function Menu() {
   const navigate = useNavigate();
+  const { mensajes } = useLang();
 
   const handleCotizar = (nombreServicio) => {
     navigate("/contacto", { state: { servicioInteres: nombreServicio } });
@@ -12,7 +14,7 @@ function Menu() {
 
   return (
     <div className="menu-container">
-      <h2 className="menu-title">Nuestros Servicios de Catering</h2>
+      <h2 className="menu-title">{mensajes.menu.title}</h2>
 
       <div className="menu-grid">
         {servicios.map((servicio) => (
@@ -41,7 +43,7 @@ function Menu() {
                   style={{ width: "100%" }}
                   onClick={() => handleCotizar(servicio.nombre)}
                 >
-                  Cotizar Servicio
+                  {mensajes.menu.btn_quote}
                 </button>
               </div>
             </div>

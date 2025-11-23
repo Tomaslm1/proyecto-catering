@@ -1,19 +1,31 @@
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
+  width: 100%;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .nav-logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: var(--primary-color);
+  color: #d35400;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
 }
 
 .nav-links a {
@@ -25,5 +37,5 @@
 }
 
 .nav-links a:hover {
-  color: var(--primary-color);
+  color: #d35400;
 }

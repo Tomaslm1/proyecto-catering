@@ -1,0 +1,37 @@
+{
+  "navbar": {
+    "home": "Home",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Excellence Corporate Catering",
+    "subtitle": "We transform your meetings and events into unforgettable gastronomic experiences.",
+    "cta": "See Our Services",
+    "weather_title": "Plan your event",
+    "weather_sub": "Current weather in Santiago",
+    "feature1_title": "Fresh Products",
+    "feature1_desc": "We use selected daily ingredients.",
+    "feature2_title": "Punctuality",
+    "feature2_desc": "Your event will start exactly on time.",
+    "feature3_title": "Personalized Attention",
+    "feature3_desc": "We adapt to your company's needs."
+  },
+  "menu": {
+    "title": "Our Catering Services",
+    "btn_quote": "Get a Quote"
+  },
+  "contact": {
+    "title": "Request a Quote",
+    "subtitle": "Tell us about your event and we will contact you shortly.",
+    "label_service": "Service of Interest:",
+    "label_name": "Full Name:",
+    "label_email": "Email:",
+    "label_date": "Event Date:",
+    "label_guests": "No. of Guests (Approx):",
+    "label_message": "Message or Details:",
+    "placeholder_message": "What type of service are you looking for? (Coffee break, Lunch...)",
+    "btn_send": "Send Request",
+    "alert_success": "Thank you! We have received your request."
+  }
+}

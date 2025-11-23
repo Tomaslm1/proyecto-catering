@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useLang } from "../context/LangContext";
 import "./Contacto.css";
 
 function Contacto() {
+  const { mensajes } = useLang();
   const location = useLocation();
-
   const servicioInicial = location.state?.servicioInteres || "";
 
   const [formData, setFormData] = useState({
@@ -32,26 +33,24 @@ function Contacto() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(
-      `¡Gracias ${formData.nombre}! Cotizaremos "${formData.tipoServicio}" para ti.`
-    );
+
+    alert(`${mensajes.contact.alert_success} (${formData.nombre})`);
     console.log("Datos del formulario:", formData);
   };
 
   return (
     <div className="contacto-container">
-      <h2>Solicita tu Cotización</h2>
-      <p>Cuéntanos sobre tu evento y te contactaremos a la brevedad.</p>
+      <h2>{mensajes.contact.title}</h2>
+      <p>{mensajes.contact.subtitle}</p>
 
       <form onSubmit={handleSubmit} className="contacto-form">
         <div className="form-group">
-          <label>Servicio a Cotizar:</label>
+          <label>{mensajes.contact.label_service}</label>
           <input
             type="text"
             name="tipoServicio"
             value={formData.tipoServicio}
             onChange={handleChange}
-            placeholder="Ej: Coffee Break, Matrimonio..."
             style={{
               backgroundColor: "#f9f9f9",
               fontWeight: "bold",
@@ -61,32 +60,30 @@ function Contacto() {
         </div>
 
         <div className="form-group">
-          <label>Nombre Completo:</label>
+          <label>{mensajes.contact.label_name}</label>
           <input
             type="text"
             name="nombre"
             value={formData.nombre}
             onChange={handleChange}
             required
-            placeholder="Ej: Juan Pérez"
           />
         </div>
 
         <div className="form-group">
-          <label>Email:</label>
+          <label>{mensajes.contact.label_email}</label>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             required
-            placeholder="juan@ejemplo.com"
           />
         </div>
 
         <div className="form-row">
           <div className="form-group">
-            <label>Fecha del Evento:</label>
+            <label>{mensajes.contact.label_date}</label>
             <input
               type="date"
               name="fecha"
@@ -94,31 +91,31 @@ function Contacto() {
               onChange={handleChange}
             />
           </div>
+
           <div className="form-group">
-            <label>N° Invitados (Aprox):</label>
+            <label>{mensajes.contact.label_guests}</label>
             <input
               type="number"
               name="invitados"
               value={formData.invitados}
               onChange={handleChange}
-              placeholder="Ej: 50"
             />
           </div>
         </div>
 
         <div className="form-group">
-          <label>Mensaje o Detalles Adicionales:</label>
+          <label>{mensajes.contact.label_message}</label>
           <textarea
             name="mensaje"
             value={formData.mensaje}
             onChange={handleChange}
             rows="4"
-            placeholder="Cuéntanos más detalles..."
+            placeholder={mensajes.contact.placeholder_message}
           ></textarea>
         </div>
 
         <button type="submit" className="btn-enviar">
-          Enviar Solicitud
+          {mensajes.contact.btn_send}
         </button>
       </form>
     </div>
