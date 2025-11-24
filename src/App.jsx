@@ -20,6 +20,9 @@ function App() {
           backgroundColor: "#fff",
         }}
       >
+        <p style={{ margin: "5px 0", fontWeight: "500" }}>
+          Contacto / WhatsApp: +56 9 7431 3183
+        </p>
         <p>&copy; {new Date().getFullYear()} Catering corporativo</p>
       </footer>
 

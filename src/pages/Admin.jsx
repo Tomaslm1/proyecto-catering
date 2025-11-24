@@ -167,20 +167,6 @@ function Admin() {
                     </button>
 
                     <button
-                      onClick={() => editarInvitados(msg.id, msg.invitados)}
-                      style={{
-                        background: "#f39c12",
-                        color: "white",
-                        border: "none",
-                        padding: "5px 10px",
-                        borderRadius: "4px",
-                        cursor: "pointer",
-                      }}
-                    >
-                      ✏️ Editar Invitados
-                    </button>
-
-                    <button
                       onClick={() => borrarMensaje(msg.id)}
                       style={{
                         background: "#e74c3c",

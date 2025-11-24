@@ -64,46 +64,6 @@
   transform: scale(1.05);
 }
 
-.weather-widget {
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  border-top: 5px solid #3498db;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.weather-widget h3 {
-  color: #2c3e50;
-  margin-top: 0;
-}
-
-.weather-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 15px;
-}
-
-.temp {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #333;
-}
-
-.condition {
-  color: #666;
-  font-size: 1rem;
-  margin-top: 5px;
-}
-
 .gallery-section {
   max-width: 1200px;
   margin: 0 auto 60px auto;

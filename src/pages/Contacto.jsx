@@ -1,6 +1,8 @@
+// src/pages/Contacto.jsx
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useLang } from "../context/LangContext";
+import emailjs from "@emailjs/browser"; // <--- 1. Importamos la librería
 import "./Contacto.css";
 
 function Contacto() {
@@ -19,6 +21,9 @@ function Contacto() {
     invitados: "",
     mensaje: "",
   });
+
+  // Estado para saber si se está enviando (para deshabilitar el botón)
+  const [enviando, setEnviando] = useState(false);
 
   useEffect(() => {
     if (servicioInicial) {
@@ -41,31 +46,59 @@ function Contacto() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setEnviando(true); // Activamos estado de carga
 
+    // 1. Guardar en LocalStorage (Para tu panel Admin)
     const mensajesGuardados =
       JSON.parse(localStorage.getItem("mensajesContacto")) || [];
-
     const nuevoMensaje = {
       ...formData,
       id: Date.now(),
       estado: "Pendiente",
     };
-
     mensajesGuardados.push(nuevoMensaje);
     localStorage.setItem("mensajesContacto", JSON.stringify(mensajesGuardados));
 
-    alert(`${mensajes.contact.alert_success} (${formData.nombre})`);
+    const SERVICE_ID = "service_yndtucs";
+    const TEMPLATE_ID = "template_0nuhh8r";
+    const PUBLIC_KEY = "GEmCEg7K7i5fvKyUl";
 
-    setFormData({
-      nombre: "",
-      empresa: "",
-      email: "",
-      telefono: "",
-      tipoServicio: "",
-      fecha: "",
-      invitados: "",
-      mensaje: "",
-    });
+    const templateParams = {
+      nombre: formData.nombre,
+      empresa: formData.empresa,
+      email: formData.email,
+      telefono: formData.telefono,
+      tipoServicio: formData.tipoServicio,
+      fecha: formData.fecha,
+      invitados: formData.invitados,
+      mensaje: formData.mensaje,
+    };
+
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY).then(
+      (response) => {
+        console.log("SUCCESS!", response.status, response.text);
+        alert(mensajes.contact.alert_success);
+
+        setFormData({
+          nombre: "",
+          empresa: "",
+          email: "",
+          telefono: "",
+          tipoServicio: "",
+          fecha: "",
+          invitados: "",
+          mensaje: "",
+        });
+        setEnviando(false);
+      },
+      (err) => {
+        console.log("FAILED...", err);
+        alert(
+          "Hubo un error al enviar el correo, pero tus datos quedaron guardados en el sistema."
+        );
+        setEnviando(false);
+      }
+    );
   };
 
   return (
@@ -168,8 +201,8 @@ function Contacto() {
           ></textarea>
         </div>
 
-        <button type="submit" className="btn-enviar">
-          {mensajes.contact.btn_send}
+        <button type="submit" className="btn-enviar" disabled={enviando}>
+          {enviando ? "Enviando..." : mensajes.contact.btn_send}
         </button>
       </form>
     </div>
