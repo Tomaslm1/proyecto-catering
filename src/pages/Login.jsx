@@ -40,7 +40,6 @@ function Login() {
               type="text"
               value={usuario}
               onChange={(e) => setUsuario(e.target.value)}
-              placeholder="admin"
             />
           </div>
 
@@ -50,7 +49,6 @@ function Login() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="12345"
             />
           </div>
 
