@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import * as XLSX from "xlsx"; // <--- 1. IMPORTAMOS LA LIBRERÍA
+import * as XLSX from "xlsx";
 
 function Admin() {
   const [mensajes, setMensajes] = useState([]);
@@ -43,14 +43,12 @@ function Admin() {
     localStorage.setItem("mensajesContacto", JSON.stringify(nuevosMensajes));
   };
 
-  // --- NUEVA FUNCIÓN: EXPORTAR A .XLSX ---
   const descargarExcel = () => {
     if (mensajes.length === 0) {
       alert("No hay datos para exportar.");
       return;
     }
 
-    // 1. Preparamos los datos para que se vean bonitos en Excel
     const datosExcel = mensajes.map((msg) => ({
       ID: msg.id,
       Fecha: msg.fecha,
@@ -64,29 +62,25 @@ function Admin() {
       Mensaje: msg.mensaje,
     }));
 
-    // 2. Creamos una "Hoja de Cálculo" (Worksheet)
     const hoja = XLSX.utils.json_to_sheet(datosExcel);
 
-    // 3. Ajustamos el ancho de las columnas automáticamente (Opcional, para que se vea pro)
     const anchoColumnas = [
-      { wch: 15 }, // ID
-      { wch: 12 }, // Fecha
-      { wch: 10 }, // Estado
-      { wch: 20 }, // Cliente
-      { wch: 20 }, // Empresa
-      { wch: 25 }, // Email
-      { wch: 15 }, // Teléfono
-      { wch: 20 }, // Servicio
-      { wch: 10 }, // Invitados
-      { wch: 50 }, // Mensaje (más ancho)
+      { wch: 15 },
+      { wch: 12 },
+      { wch: 10 },
+      { wch: 20 },
+      { wch: 20 },
+      { wch: 25 },
+      { wch: 15 },
+      { wch: 20 },
+      { wch: 10 },
+      { wch: 50 },
     ];
     hoja["!cols"] = anchoColumnas;
 
-    // 4. Creamos el "Libro" (Workbook) y le agregamos la hoja
     const libro = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(libro, hoja, "Cotizaciones");
 
-    // 5. Descargamos el archivo .xlsx
     XLSX.writeFile(libro, "Reporte_Catering.xlsx");
   };
 
@@ -103,7 +97,6 @@ function Admin() {
         <h1 style={{ color: "#d35400" }}>Panel de Administración</h1>
 
         <div style={{ display: "flex", gap: "10px" }}>
-          {/* Botón actualizado */}
           <button
             onClick={descargarExcel}
             style={{
