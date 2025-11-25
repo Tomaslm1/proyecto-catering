@@ -9,18 +9,22 @@ import Menu from "./pages/Menu.jsx";
 import Contacto from "./pages/Contacto.jsx";
 import Login from "./pages/Login.jsx";
 import Admin from "./pages/Admin.jsx";
+import NotFound from "./pages/NotFound.jsx";
 import "./index.css";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <NotFound />,
     children: [
       { path: "/", element: <Home /> },
       { path: "/menu", element: <Menu /> },
       { path: "/contacto", element: <Contacto /> },
       { path: "/login", element: <Login /> },
       { path: "/admin", element: <Admin /> },
+
+      { path: "*", element: <NotFound /> },
     ],
   },
 ]);
