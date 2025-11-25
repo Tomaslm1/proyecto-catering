@@ -24,7 +24,6 @@ export const servicios = [
     nombre: "Regalos corporativos",
     descripcion: "Regalos perfectos para tu empresa.",
     imagen: "/img/regalos-corporativos.jpg",
-    w,
   },
   {
     id: 5,
