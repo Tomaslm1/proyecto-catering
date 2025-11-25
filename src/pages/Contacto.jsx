@@ -1,8 +1,7 @@
-// src/pages/Contacto.jsx
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useLang } from "../context/LangContext";
-import emailjs from "@emailjs/browser"; // <--- 1. Importamos la librería
+import emailjs from "@emailjs/browser";
 import "./Contacto.css";
 
 function Contacto() {
@@ -22,7 +21,6 @@ function Contacto() {
     mensaje: "",
   });
 
-  // Estado para saber si se está enviando (para deshabilitar el botón)
   const [enviando, setEnviando] = useState(false);
 
   useEffect(() => {
@@ -46,9 +44,8 @@ function Contacto() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setEnviando(true); // Activamos estado de carga
+    setEnviando(true);
 
-    // 1. Guardar en LocalStorage (Para tu panel Admin)
     const mensajesGuardados =
       JSON.parse(localStorage.getItem("mensajesContacto")) || [];
     const nuevoMensaje = {
