@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import * as XLSX from "xlsx"; // <--- 1. IMPORTAMOS LA LIBRERÍA
 
 function Admin() {
   const [mensajes, setMensajes] = useState([]);
@@ -42,21 +43,51 @@ function Admin() {
     localStorage.setItem("mensajesContacto", JSON.stringify(nuevosMensajes));
   };
 
-  const editarInvitados = (id, invitadosActuales) => {
-    const nuevoNumero = prompt(
-      "Ingresa el nuevo número de invitados:",
-      invitadosActuales
-    );
-    if (nuevoNumero !== null && nuevoNumero !== "") {
-      const nuevosMensajes = mensajes.map((msg) => {
-        if (msg.id === id) {
-          return { ...msg, invitados: nuevoNumero };
-        }
-        return msg;
-      });
-      setMensajes(nuevosMensajes);
-      localStorage.setItem("mensajesContacto", JSON.stringify(nuevosMensajes));
+  // --- NUEVA FUNCIÓN: EXPORTAR A .XLSX ---
+  const descargarExcel = () => {
+    if (mensajes.length === 0) {
+      alert("No hay datos para exportar.");
+      return;
     }
+
+    // 1. Preparamos los datos para que se vean bonitos en Excel
+    const datosExcel = mensajes.map((msg) => ({
+      ID: msg.id,
+      Fecha: msg.fecha,
+      Estado: msg.estado || "Pendiente",
+      Cliente: msg.nombre,
+      Empresa: msg.empresa || "N/A",
+      Email: msg.email,
+      Teléfono: msg.telefono,
+      Servicio: msg.tipoServicio,
+      Invitados: msg.invitados,
+      Mensaje: msg.mensaje,
+    }));
+
+    // 2. Creamos una "Hoja de Cálculo" (Worksheet)
+    const hoja = XLSX.utils.json_to_sheet(datosExcel);
+
+    // 3. Ajustamos el ancho de las columnas automáticamente (Opcional, para que se vea pro)
+    const anchoColumnas = [
+      { wch: 15 }, // ID
+      { wch: 12 }, // Fecha
+      { wch: 10 }, // Estado
+      { wch: 20 }, // Cliente
+      { wch: 20 }, // Empresa
+      { wch: 25 }, // Email
+      { wch: 15 }, // Teléfono
+      { wch: 20 }, // Servicio
+      { wch: 10 }, // Invitados
+      { wch: 50 }, // Mensaje (más ancho)
+    ];
+    hoja["!cols"] = anchoColumnas;
+
+    // 4. Creamos el "Libro" (Workbook) y le agregamos la hoja
+    const libro = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(libro, hoja, "Cotizaciones");
+
+    // 5. Descargamos el archivo .xlsx
+    XLSX.writeFile(libro, "Reporte_Catering.xlsx");
   };
 
   return (
@@ -70,19 +101,41 @@ function Admin() {
         }}
       >
         <h1 style={{ color: "#d35400" }}>Panel de Administración</h1>
-        <button
-          onClick={handleLogout}
-          style={{
-            padding: "10px 20px",
-            background: "#333",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-        >
-          Cerrar Sesión
-        </button>
+
+        <div style={{ display: "flex", gap: "10px" }}>
+          {/* Botón actualizado */}
+          <button
+            onClick={descargarExcel}
+            style={{
+              padding: "10px 20px",
+              background: "#217346",
+              color: "white",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              fontWeight: "bold",
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
+            }}
+          >
+            Descargar Excel
+          </button>
+
+          <button
+            onClick={handleLogout}
+            style={{
+              padding: "10px 20px",
+              background: "#333",
+              color: "white",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            Cerrar Sesión
+          </button>
+        </div>
       </div>
 
       <h3>Bandeja de Entrada ({mensajes.length})</h3>
