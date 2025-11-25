@@ -32,7 +32,7 @@ export const servicios = [
     imagen: "/img/desayuno.jpeg",
   },
   {
-    id: 4,
+    id: 6,
     nombre: "Servicios de banqueteria",
     descripcion: "Servicio completo con tablas de distintas comidas.",
     imagen: "/img/banqueteria.jpg",
