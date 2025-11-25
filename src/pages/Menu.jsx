@@ -1,5 +1,4 @@
 import React from "react";
-import { servicios } from "../data/menuData";
 import "./Menu.css";
 import { useNavigate } from "react-router-dom";
 import { useLang } from "../context/LangContext";
@@ -7,6 +6,8 @@ import { useLang } from "../context/LangContext";
 function Menu() {
   const navigate = useNavigate();
   const { mensajes } = useLang();
+
+  const servicios = mensajes.services_list || [];
 
   const handleCotizar = (nombreServicio) => {
     navigate("/contacto", { state: { servicioInteres: nombreServicio } });

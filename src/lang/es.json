@@ -38,5 +38,43 @@
     "placeholder_message": "¿Qué tipo de servicio buscas? (Coffee break, Almuerzo...)",
     "btn_send": "Enviar Solicitud",
     "alert_success": "¡Gracias! Hemos recibido tu solicitud."
-  }
+  },
+  "services_list": [
+    {
+      "id": 1,
+      "nombre": "Coffee Break",
+      "descripcion": "Servicio completo de coffee break que incluye, cafe, te, jugo, variedad de dulces, tapaditos, frutas, entre otros.",
+      "imagen": "/img/coffee2.jpg"
+    },
+    {
+      "id": 2,
+      "nombre": "Catering para empresas",
+      "descripcion": "Servicio de catering para tu reunión.",
+      "imagen": "/img/coffee3.jpg"
+    },
+    {
+      "id": 3,
+      "nombre": "Producción de eventos",
+      "descripcion": "Servicio para tu cumpleaños, matrimonio, baby shower, entre otros.",
+      "imagen": "/img/pizza.jpg"
+    },
+    {
+      "id": 4,
+      "nombre": "Regalos corporativos",
+      "descripcion": "Regalos perfectos para tu empresa.",
+      "imagen": "/img/regalos-corporativos.jpg"
+    },
+    {
+      "id": 5,
+      "nombre": "Desayunos y tablas a domicilio",
+      "descripcion": "Desayunos y tablas a la puerta de tu casa.",
+      "imagen": "/img/desayuno.jpeg"
+    },
+    {
+      "id": 6,
+      "nombre": "Servicios de banquetería",
+      "descripcion": "Servicio completo con tablas de distintas comidas.",
+      "imagen": "/img/banqueteria.jpg"
+    }
+  ]
 }

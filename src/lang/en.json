@@ -38,5 +38,43 @@
     "placeholder_message": "What type of service are you looking for? (Coffee break, Lunch...)",
     "btn_send": "Send Request",
     "alert_success": "Thank you! We have received your request."
-  }
+  },
+  "services_list": [
+    {
+      "id": 1,
+      "nombre": "Coffee Break",
+      "descripcion": "Complete coffee break service including coffee, tea, juice, variety of sweets, mini sandwiches, fruits, among others.",
+      "imagen": "/img/coffee2.jpg"
+    },
+    {
+      "id": 2,
+      "nombre": "Corporate Catering",
+      "descripcion": "Catering service for your meeting.",
+      "imagen": "/img/coffee3.jpg"
+    },
+    {
+      "id": 3,
+      "nombre": "Event Production",
+      "descripcion": "Service for your birthday, wedding, baby shower, among others.",
+      "imagen": "/img/pizza.jpg"
+    },
+    {
+      "id": 4,
+      "nombre": "Corporate Gifts",
+      "descripcion": "Perfect gifts for your company.",
+      "imagen": "/img/regalos-corporativos.jpg"
+    },
+    {
+      "id": 5,
+      "nombre": "Breakfasts and Platters Delivery",
+      "descripcion": "Breakfasts and grazing platters delivered to your door.",
+      "imagen": "/img/desayuno.jpeg"
+    },
+    {
+      "id": 6,
+      "nombre": "Banquet Services",
+      "descripcion": "Complete service with platters of various foods.",
+      "imagen": "/img/banqueteria.jpg"
+    }
+  ]
 }
